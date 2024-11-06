@@ -215,4 +215,5 @@ tests/benchmarks/.benchmarks/
 helm/charts/*
 
 # Ignore output from common examples
-processed_docs
+processed_docs/*
+.volumes/*
