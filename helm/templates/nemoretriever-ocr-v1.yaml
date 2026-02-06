@@ -33,6 +33,7 @@ spec:
     nimCache:
       name: nemoretriever-ocr-v1
   replicas: {{ .Values.nimOperator.nemoretriever_ocr_v1.replicas }}
+  {{ include "nv-ingest.nimAffinity" . | nindent 2 }}
   nodeSelector: {{ toYaml .Values.nimOperator.nemoretriever_ocr_v1.nodeSelector | nindent 4 }}
   resources: {{ toYaml .Values.nimOperator.nemoretriever_ocr_v1.resources | nindent 4 }}
   tolerations: {{ toYaml .Values.nimOperator.nemoretriever_ocr_v1.tolerations | nindent 4 }}

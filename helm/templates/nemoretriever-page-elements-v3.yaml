@@ -35,6 +35,7 @@ spec:
       name: nemoretriever-page-elements-v3
       profile: ''
   replicas: {{ .Values.nimOperator.page_elements.replicas }}
+  {{ include "nv-ingest.nimAffinity" . | nindent 2 }}
   nodeSelector: {{ toYaml .Values.nimOperator.page_elements.nodeSelector | nindent 4 }}
   resources: {{ toYaml .Values.nimOperator.page_elements.resources | nindent 4 }}
   tolerations: {{ toYaml .Values.nimOperator.page_elements.tolerations | nindent 4 }}

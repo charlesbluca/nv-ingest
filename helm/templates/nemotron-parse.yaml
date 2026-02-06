@@ -34,6 +34,7 @@ spec:
     nimCache:
       name: nemotron-parse
   replicas: {{ .Values.nimOperator.nemotron_parse.replicas }}
+  {{ include "nv-ingest.nimAffinity" . | nindent 2 }}
   resources:
 {{ toYaml .Values.nimOperator.nemotron_parse.resources | nindent 4 }}
   tolerations:

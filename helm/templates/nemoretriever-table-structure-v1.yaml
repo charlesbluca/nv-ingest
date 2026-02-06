@@ -34,6 +34,7 @@ spec:
     nimCache:
       name: nemoretriever-table-structure-v1
   replicas: {{ .Values.nimOperator.table_structure.replicas }}
+  {{ include "nv-ingest.nimAffinity" . | nindent 2 }}
   nodeSelector:
 {{ toYaml .Values.nimOperator.table_structure.nodeSelector | nindent 4 }}
   resources:

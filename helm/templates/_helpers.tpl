@@ -74,3 +74,27 @@ Create secret to access docker registry
   {{- define "nv-ingest.ngcApiSecret" }}
   {{- printf "%s" .Values.ngcApiSecret.password  }}
   {{- end }}
+
+{{/*
+  Affinity for NIMService pods. When nimOperator.timeSlicingColocate is true, adds
+  preferredDuringSchedulingIgnoredDuringExecution pod affinity so NIM pods prefer the
+  same node as the main nv-ingest deployment (same physical GPU when time-slicing).
+  Otherwise uses nimOperator.affinity when set.
+  */}}
+{{- define "nv-ingest.nimAffinity" -}}
+{{- if .Values.nimOperator.timeSlicingColocate }}
+affinity:
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: {{ include "nv-ingest.name" . | quote }}
+              app.kubernetes.io/instance: {{ .Release.Name | quote }}
+          topologyKey: kubernetes.io/hostname
+{{- else if .Values.nimOperator.affinity }}
+affinity:
+{{ toYaml .Values.nimOperator.affinity | nindent 2 }}
+{{- end }}
+{{- end }}

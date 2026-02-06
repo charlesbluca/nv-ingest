@@ -34,6 +34,7 @@ spec:
     nimCache:
       name: nemoretriever-graphic-elements-v1
   replicas: {{ .Values.nimOperator.graphic_elements.replicas }}
+  {{ include "nv-ingest.nimAffinity" . | nindent 2 }}
   nodeSelector:
 {{ toYaml .Values.nimOperator.graphic_elements.nodeSelector | nindent 4 }}
   resources:

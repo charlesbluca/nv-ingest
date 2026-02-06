@@ -190,6 +190,24 @@ kubectl get nodes -o json | jq -r '.items[] | select(.metadata.name | test("-wor
 }
 ```
 
+##### Co-locating GPU services on one physical GPU (time-slicing)
+
+With time-slicing enabled, the scheduler can place different GPU-requesting services (NIMs, Milvus) on different nodes or different logical GPUs. To ensure all of them use the **same** physical GPU (and thus share it via time-slicing), they must run on the **same node**.
+
+- **Option 1 – Use the chart’s colocation flag (recommended):** Set `nimOperator.timeSlicingColocate: true` so all NIM pods prefer the same node as the main nv-ingest deployment. Ensure the main deployment is scheduled on a GPU node (e.g. set `nodeSelector` so it runs on a node with `nvidia.com/gpu.present: "true"` or your GPU node label). Then all NIMs will follow that node and share one physical GPU.
+
+  ```yaml
+  # values override when using time-slicing on a single GPU node
+  nodeSelector:
+    nvidia.com/gpu.present: "true"
+  nimOperator:
+    timeSlicingColocate: true
+  ```
+
+- **Option 2 – Custom affinity:** Set `nimOperator.affinity` to your own pod affinity or node affinity so all NIM pods are scheduled on the same node (e.g. same topologyKey as other GPU workloads).
+
+- **Milvus:** If you also deploy Milvus from this chart and want it on the same GPU node, pass the appropriate `milvus.standalone.affinity` (or node selector) from the [Milvus Helm chart](https://github.com/zilliztech/milvus-helm) so its pod runs on that node as well.
+
 #### Enable NVIDIA GPU MIG
 
 [NVIDIA MIG](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-operator-mig.html) is a technology that enables a specific GPU to be sliced into individual virtual GPUs.

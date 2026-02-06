@@ -615,6 +615,11 @@ nimOperator:
     namespaces: []
     resources: {}
 
+  ## @param nimOperator.affinity [object] [default: {}] Affinity applied to all NIMService pods (nodeAffinity, podAffinity, podAntiAffinity). See Kubernetes affinity docs.
+  ## @param nimOperator.timeSlicingColocate [bool] [default: false] When true, NIM pods prefer the same node as the main nv-ingest deployment so they share one physical GPU when GPU operator time-slicing is enabled. Set nodeSelector on the main deployment to a GPU node so the scheduler places nv-ingest there first.
+  affinity: {}
+  timeSlicingColocate: false
+
   ## @section NIM Services Configuration
   ##
   ## Define each NIM service instance used by nv-ingest and its configuration.
