@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: llama-3.2-nv-embedqa-1b-v2
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.embedqa.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.embedqa.replicas }}
   nodeSelector:
 {{ toYaml .Values.nimOperator.embedqa.nodeSelector | nindent 4 }}

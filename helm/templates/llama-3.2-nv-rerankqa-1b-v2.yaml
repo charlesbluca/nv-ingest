@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: llama-3.2-nv-rerankqa-1b-v2
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.llama_3_2_nv_rerankqa_1b_v2.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.llama_3_2_nv_rerankqa_1b_v2.replicas }}
   nodeSelector:
 {{ toYaml .Values.nimOperator.llama_3_2_nv_rerankqa_1b_v2.nodeSelector | nindent 4 }}

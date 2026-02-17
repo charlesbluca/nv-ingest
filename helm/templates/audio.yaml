@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: audio
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.audio.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.nemotron_parse.replicas }}
   resources:
 {{ toYaml .Values.nimOperator.audio.resources | nindent 4 }}

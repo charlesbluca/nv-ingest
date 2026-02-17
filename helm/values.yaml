@@ -96,6 +96,9 @@ autoscaling:
 ## @param tmpDirSize [default: 50Gi] Specify the amount of space to reserve for temporary storage
 tmpDirSize: 50Gi
 
+## @param shmSize [default: "40Gi"] Size of shared memory (/dev/shm) for the nv-ingest container. Matches docker-compose shm_size for nv-ingest-ms-runtime (40gb, ~30% of memory per Ray).
+shmSize: "40Gi"
+
 ## @section Environment Variables
 ## @descriptionStart
 ## Define environment variables as key/value dictionary pairs
@@ -652,6 +655,7 @@ nimOperator:
         create: true
         size: "25Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -716,6 +720,7 @@ nimOperator:
         create: true
         size: "25Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -762,6 +767,7 @@ nimOperator:
         create: true
         size: "25Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -808,6 +814,7 @@ nimOperator:
         create: true
         size: "50Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -850,6 +857,7 @@ nimOperator:
         create: true
         size: "25Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -892,6 +900,7 @@ nimOperator:
         create: true
         size: "50Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -936,6 +945,7 @@ nimOperator:
         create: true
         size: "300Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -981,6 +991,7 @@ nimOperator:
         create: true
         size: "100Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "16Gi"
     replicas: 1
     resources:
       limits:
@@ -1027,6 +1038,7 @@ nimOperator:
         create: true
         size: "25Gi"
         volumeAccessMode: "ReadWriteOnce"
+      sharedMemorySizeLimit: "2Gi"
     replicas: 1
     resources:
       limits:

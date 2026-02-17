@@ -32,6 +32,7 @@ spec:
   storage:
     nimCache:
       name: nemoretriever-ocr-v1
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.nemoretriever_ocr_v1.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.nemoretriever_ocr_v1.replicas }}
   nodeSelector: {{ toYaml .Values.nimOperator.nemoretriever_ocr_v1.nodeSelector | nindent 4 }}
   resources: {{ toYaml .Values.nimOperator.nemoretriever_ocr_v1.resources | nindent 4 }}

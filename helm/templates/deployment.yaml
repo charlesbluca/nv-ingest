@@ -175,6 +175,7 @@ spec:
         - name: dshm
           emptyDir:
             medium: Memory
+            sizeLimit: "{{ .Values.shmSize }}"
         - name: ephemeral
           emptyDir:
             sizeLimit: "{{ .Values.tmpDirSize }}"

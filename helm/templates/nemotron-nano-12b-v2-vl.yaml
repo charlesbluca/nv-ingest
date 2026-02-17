@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: nemotron-nano-12b-v2-vl
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.nemotron_nano_12b_v2_vl.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.nemotron_nano_12b_v2_vl.replicas }}
   resources:
 {{ toYaml .Values.nimOperator.nemotron_nano_12b_v2_vl.resources | nindent 4 }}

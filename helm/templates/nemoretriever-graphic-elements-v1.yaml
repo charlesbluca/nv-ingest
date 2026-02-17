@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: nemoretriever-graphic-elements-v1
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.graphic_elements.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.graphic_elements.replicas }}
   nodeSelector:
 {{ toYaml .Values.nimOperator.graphic_elements.nodeSelector | nindent 4 }}

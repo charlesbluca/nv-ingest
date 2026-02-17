@@ -33,6 +33,7 @@ spec:
   storage:
     nimCache:
       name: nemotron-parse
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.nemotron_parse.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.nemotron_parse.replicas }}
   resources:
 {{ toYaml .Values.nimOperator.nemotron_parse.resources | nindent 4 }}

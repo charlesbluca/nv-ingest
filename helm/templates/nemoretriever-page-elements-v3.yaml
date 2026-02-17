@@ -34,6 +34,7 @@ spec:
     nimCache:
       name: nemoretriever-page-elements-v3
       profile: ''
+    sharedMemorySizeLimit: "{{ .Values.nimOperator.page_elements.storage.sharedMemorySizeLimit }}"
   replicas: {{ .Values.nimOperator.page_elements.replicas }}
   nodeSelector: {{ toYaml .Values.nimOperator.page_elements.nodeSelector | nindent 4 }}
   resources: {{ toYaml .Values.nimOperator.page_elements.resources | nindent 4 }}
