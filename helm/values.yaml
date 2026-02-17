@@ -319,16 +319,14 @@ redis:
     resources:
       requests:
         memory: "6Gi"
-      limits:
-        memory: "12Gi"
+      limits: {}
   master:
     persistence:
       size: "50Gi"
     resources:
       requests:
         memory: "6Gi"
-      limits:
-        memory: "12Gi"
+      limits: {}
     configmap: |-
       protected-mode no
 
@@ -459,9 +457,7 @@ zipkin:
     extraEnv:
       JAVA_OPTS: "-Xms2g -Xmx4g -XX:+ExitOnOutOfMemoryError"
   resources:
-    limits:
-      cpu: 500m
-      memory: 4.5Gi
+    limits: {}
     requests:
       cpu: 100m
       memory: 2.5Gi
